@@ -177,7 +177,7 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default().initializers.add('xypp/p
   (0,flarum_common_extend__WEBPACK_IMPORTED_MODULE_5__.extend)((flarum_forum_components_CommentPost__WEBPACK_IMPORTED_MODULE_2___default().prototype), "content", function () {
     if (flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default().current.matches((flarum_forum_components_DiscussionPage__WEBPACK_IMPORTED_MODULE_3___default()))) {
       if ((flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default().session).user) {
-        $(".ptr-block.ptr-pay-btn").off("click").on("click", function (e) {
+        $(".ptr-block .ptr-pay-btn").off("click").on("click", function (e) {
           var _e$currentTarget;
           var box = $((_e$currentTarget = e.currentTarget) == null ? void 0 : _e$currentTarget.parentElement);
           flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default().modal.show(_components_PayModal__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -185,7 +185,7 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default().initializers.add('xypp/p
           });
         });
       } else {
-        $(".ptr-block.ptr-pay-btn").off("click").on("click", function () {
+        $(".ptr-block .ptr-pay-btn").off("click").on("click", function () {
           return flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default().modal.show((flarum_forum_components_LogInModal__WEBPACK_IMPORTED_MODULE_1___default()));
         });
       }
