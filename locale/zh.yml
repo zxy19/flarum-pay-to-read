@@ -8,11 +8,11 @@ xypp-pay-to-read:
       bypass: 绕过付费。
   forum:
     payment-req:
-      text: 作者将该内容设置为付费可见。价格 {0} 量见币
+      text: 作者将该内容设置为付费可见。价格 {0} 币
       btn: 购买
     payment:
       title: 购买确认
-      tip: 购买此内容需要 {0} 量见币，您现在拥有 {1} 。 确认继续吗?
+      tip: 购买此内容需要 {0} 币，您现在拥有 {1} 。 确认继续吗?
       btn: 购买内容
       loading: 正在加载支付信息
     error:
