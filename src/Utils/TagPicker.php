@@ -19,8 +19,8 @@ class TagPicker{
                 foreach($parts as $p){
                     $args = explode("=",$p);
                     if(count($args)!=2)continue;
-                    $arg = trim($args[0],"\"'` \t\r\n\0\x0B");
-                    $val = trim($args[1],"\"'` \t\r\n\0\x0B");
+                    $arg = trim($args[0],"\"'` \t\r\n");
+                    $val = trim($args[1],"\"'` \t\r\n");
                     $params[$arg] = $val;
                 }
                 array_push($queue,array("start_tag"=>array($start,$end),"end_tag"=>null,"params"=>$params));

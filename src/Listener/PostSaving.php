@@ -65,8 +65,10 @@ class PostSaving
                 $post->content = str_replace("[newId]#" . $tmpId . "#[/newId]", $id, $post->content);
             } else {
                 $payItem = $this->payItemRepository->findById($id);
-                $payItem->ammount = $tag['params']['ammount'];
-                $payItem->save();
+                if ($payItem) {
+                    $payItem->ammount = $tag['params']['ammount'];
+                    $payItem->save();
+                }
             }
             $appearedId[$id] = true;
         }
