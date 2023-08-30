@@ -47,7 +47,7 @@ class PostDeleting
         foreach($oldTags as $tag){
             array_push($rmIdList,$tag['params']['id']);
         }
-        PayItem::where("id","in",$rmIdList)->delete();
+        PayItem::whereIn("id",$rmIdList)->delete();
         return;
     }
 }

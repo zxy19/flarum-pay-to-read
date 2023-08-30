@@ -53,15 +53,23 @@ class PostSaving
         if ($oldPost) {
             [$oldTags, $_] = TagPicker::TagPicker($oldPost->content);
         }
+        $laterPostId = [];
         $appearedId = array();
         foreach ($tags as $tag) {
             $payItem = null;
             $id = $tag['params']['id'];
             if ($tag['params']['new']) {
                 $tmpId = $id;
-                $payItem = PayItem::build($post->id, $user->id, $tag['params']['ammount']);
+                $postIdSto = $post->id;
+                if(!$postIdSto){
+                    $postIdSto = 0;
+                }
+                $payItem = PayItem::build($postIdSto, $user->id, $tag['params']['ammount']);
                 $payItem->save();
                 $id = $payItem->id;
+                if($postIdSto == 0){
+                    array_push($laterPostId,$id);
+                }
                 $post->content = str_replace("[newId]#" . $tmpId . "#[/newId]", $id, $post->content);
             } else {
                 $payItem = $this->payItemRepository->findById($id);
@@ -81,7 +89,12 @@ class PostSaving
                 array_push($rmIdList, $tag['params']['id']);
             }
         }
-        PayItem::where("id", "in", $rmIdList)->delete();
+        PayItem::whereIn("id", $rmIdList)->delete();
+        if(count($laterPostId)){
+            $post->afterSave(function($post) use ($laterPostId){
+                PayItem::whereIn("id", $laterPostId)->update(["post_id"=>$post->id]);
+            });
+        }
         return;
     }
 }

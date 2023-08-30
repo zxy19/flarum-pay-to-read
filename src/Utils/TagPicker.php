@@ -26,6 +26,7 @@ class TagPicker{
                 array_push($queue,array("start_tag"=>array($start,$end),"end_tag"=>null,"params"=>$params));
                 $i = $end;
             }else if(!$inCodeBlock && substr($content,$i,6) == "[/pay]"){
+                if(!count($queue))continue;
                 $top = array_pop($queue);
                 $top['end_tag'] = array($i,$i+5);
                 $top['params']['depth']=count($queue);
@@ -38,6 +39,7 @@ class TagPicker{
             }
         }
         if($updateId){
+            file_put_contents("/flarum/app/111111.txt",print_r($closedTag,true));
             $idmx = 0;
             for($i = count($closedTag) - 1;$i >= 0;$i--){
                 $tg = $closedTag[$i];
