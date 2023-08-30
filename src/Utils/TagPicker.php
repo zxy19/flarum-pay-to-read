@@ -33,8 +33,7 @@ class TagPicker{
                 array_push($closedTag,$top);
                 $i = $i + 5;
             }else if(substr($content,$i,3) == '```'){
-                $i = $i + 3;
-                $result .= "```";
+                $i = $i + 2;
                 $inCodeBlock = !$inCodeBlock;
             }
         }
@@ -54,6 +53,7 @@ class TagPicker{
         return [$closedTag,$content];
     }
     public static function TagPickerHTML(string $content,bool $updateId = true){
+        // file_put_contents("/flarum/app/extensions/pay-to-read/111.txt",$content);
         $inCodeBlock = false;
         $queue = array();
         $closedTag = array();

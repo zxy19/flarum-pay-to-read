@@ -13,7 +13,7 @@ app.initializers.add('xypp/pay-to-read', () => {
     extend(CommentPost.prototype, "content", function () {
         if (app.current.matches(DiscussionPage)) {
             if (app.session.user) {
-                $(".ptr-block .ptr-pay-btn")
+                $(".ptr-block.ptr-pay-btn")
                     .off("click")
                     .on("click", (e) => {
                         let box = $(e.currentTarget?.parentElement);
@@ -22,12 +22,12 @@ app.initializers.add('xypp/pay-to-read', () => {
                         });
                     });
             } else {
-                $(".ptr-block .ptr-pay-btn")
+                $(".ptr-block.ptr-pay-btn")
                     .off("click")
                     .on("click", () => app.modal.show(LogInModal));
             }
             $(".ptr-block").each((idx, element) => {
-                $(element.parentNode)
+                $(element)
                     .find("span")
                     .text(
                         app.translator.trans("xypp-pay-to-read.forum.payment-req.text",
