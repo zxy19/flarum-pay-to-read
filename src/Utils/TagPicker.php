@@ -53,7 +53,6 @@ class TagPicker{
         return [$closedTag,$content];
     }
     public static function TagPickerHTML(string $content,bool $updateId = true){
-        // file_put_contents("/flarum/app/extensions/pay-to-read/111.txt",$content);
         $inCodeBlock = false;
         $queue = array();
         $closedTag = array();
