@@ -2,7 +2,9 @@
     "name": "xypp/pay-to-read",
     "description": "付费阅读",
     "keywords": [
-        "flarum"
+        "flarum",
+        "pay to read",
+        "money"
     ],
     "type": "flarum-extension",
     "license": "MIT",

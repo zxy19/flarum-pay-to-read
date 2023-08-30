@@ -8,7 +8,6 @@ xypp-pay-to-read:
         desc: Maxium stack level
     permission:
       bypass: Bypass payment.
-
   forum:
     payment-req:
       text: Author has set the content to be paid. Priced {0} 量见币
