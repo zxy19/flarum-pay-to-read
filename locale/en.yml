@@ -1,0 +1,28 @@
+xypp-pay-to-read:
+  # For more details on the format
+  # Checkout https://docs.flarum.org/extend/i18n/#appendix-a-standard-key-format
+  admin:
+    settings:
+      max-stack:
+        label: Maxium stack level
+        desc: Maxium stack level
+    permission:
+      bypass: Bypass payment.
+
+  forum:
+    payment-req:
+      text: Author has set the content to be paid. Priced {0} 量见币
+      btn: Pay
+    payment:
+      title: Payment Confirmation
+      tip: Pay for this content will cost {0} 量见币, you have {1} 量见币 currently. Confirmed?
+      btn: Pay for it
+      loading: Loading payment information
+    error:
+      paid: You have paid for this content. Just refresh the page.
+      missing: No such content.
+      no_enough_money: You have no enough money.
+      internal_err: Internal error.
+    editor:
+      help: Not fill in the id parameter to create a new pay to read, not modify the original id, then users who have already paid can read.
+      label: Insert pay to read

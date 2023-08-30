@@ -1,0 +1,181 @@
+Array
+(
+    [0] => Array
+        (
+            [number] => 1
+            [createdAt] => 2023-08-27T08:40:41+00:00
+            [contentType] => comment
+            [contentHtml] => <pre><code>123</code><script async="" crossorigin="anonymous" data-hljs-style="github" integrity="sha384-fSWmbgQwbzLXpKFwOj6DlXOstUp9/gRcSSNLI50wWQYg7XIihuBcYUTG/GR7ocjz" src="https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.33/loader.min.js"></script><script>
+                    if(window.hljsLoader && !document.currentScript.parentNode.hasAttribute('data-s9e-livepreview-onupdate')) {
+                        window.hljsLoader.highlightBlocks(document.currentScript.parentNode);
+                    }
+                </script></pre>
+
+<p><pay-to-read data-ammount="1" data-id="3"><br>
+<br>
+嵌套的付费内容<pay-to-read data-ammount="4" data-id="4">123</pay-to-read><br>
+<br>
+<reply2see>1234</reply2see><br>
+<br>
+</pay-to-read></p>
+
+<p><reply2see><pay-to-read data-ammount="4" data-id="5">123</pay-to-read></reply2see></p>
+            [renderFailed] => 
+            [editedAt] => 2023-08-30T06:46:34+00:00
+            [canEdit] => 
+            [canDelete] => 
+            [canHide] => 
+            [mentionedByCount] => 0
+            [canFlag] => 1
+            [isApproved] => 1
+            [canApprove] => 
+            [canLike] => 1
+            [likesCount] => 0
+        )
+
+    [1] => Array
+        (
+            [0] => Array
+                (
+                    [start_tag] => Array
+                        (
+                            [0] => 613
+                            [1] => 654
+                        )
+
+                    [end_tag] => Array
+                        (
+                            [0] => 658
+                            [1] => 671
+                        )
+
+                    [params] => Array
+                        (
+                            [ammount] => 4
+                            [id] => 4
+                            [depth] => 1
+                            [new] => 
+                        )
+
+                )
+
+            [1] => Array
+                (
+                    [start_tag] => Array
+                        (
+                            [0] => 540
+                            [1] => 581
+                        )
+
+                    [end_tag] => Array
+                        (
+                            [0] => 719
+                            [1] => 732
+                        )
+
+                    [params] => Array
+                        (
+                            [ammount] => 1
+                            [id] => 3
+                            [depth] => 0
+                            [new] => 
+                        )
+
+                )
+
+            [2] => Array
+                (
+                    [start_tag] => Array
+                        (
+                            [0] => 753
+                            [1] => 794
+                        )
+
+                    [end_tag] => Array
+                        (
+                            [0] => 798
+                            [1] => 811
+                        )
+
+                    [params] => Array
+                        (
+                            [ammount] => 4
+                            [id] => 5
+                            [depth] => 0
+                            [new] => 
+                        )
+
+                )
+
+        )
+
+    [2] => <pre><code>123</code><script async="" crossorigin="anonymous" data-hljs-style="github" integrity="sha384-fSWmbgQwbzLXpKFwOj6DlXOstUp9/gRcSSNLI50wWQYg7XIihuBcYUTG/GR7ocjz" src="https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.33/loader.min.js"></script><script>
+                    if(window.hljsLoader && !document.currentScript.parentNode.hasAttribute('data-s9e-livepreview-onupdate')) {
+                        window.hljsLoader.highlightBlocks(document.currentScript.parentNode);
+                    }
+                </script></pre>
+
+<p><pay-to-read data-ammount="1" data-id="3"><br>
+<br>
+嵌套的付费内容<pay-to-read data-ammount="4" data-id="4">123</pay-to-read><br>
+<br>
+<reply2see>1234</reply2see><br>
+<br>
+</pay-to-read></p>
+
+<p><reply2see><pay-to-read data-ammount="4" data-id="5">123</pay-to-read></reply2see></p>
+    [3] => -1
+    [4] => 753
+    [5] => <pre><code>123</code><script async="" crossorigin="anonymous" data-hljs-style="github" integrity="sha384-fSWmbgQwbzLXpKFwOj6DlXOstUp9/gRcSSNLI50wWQYg7XIihuBcYUTG/GR7ocjz" src="https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.33/loader.min.js"></script><script>
+                    if(window.hljsLoader && !document.currentScript.parentNode.hasAttribute('data-s9e-livepreview-onupdate')) {
+                        window.hljsLoader.highlightBlocks(document.currentScript.parentNode);
+                    }
+                </script></pre>
+
+<p><pay-to-read data-ammount="1" data-id="3"><br>
+<br>
+嵌套的付费内容<pay-to-read data-ammount="4" data-id="4">123</pay-to-read><br>
+<br>
+<reply2see>1234</reply2see><br>
+<br>
+</pay-to-read></p>
+
+<p><reply2see><div class="ptr-block ptr-payment-require" data-ammount="4" data-id="5"><span>Payment Required</span><button class="ptr-pay-btn">Pay</button></div></reply2see></p>
+    [6] => <pre><code>123</code><script async="" crossorigin="anonymous" data-hljs-style="github" integrity="sha384-fSWmbgQwbzLXpKFwOj6DlXOstUp9/gRcSSNLI50wWQYg7XIihuBcYUTG/GR7ocjz" src="https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.33/loader.min.js"></script><script>
+                    if(window.hljsLoader && !document.currentScript.parentNode.hasAttribute('data-s9e-livepreview-onupdate')) {
+                        window.hljsLoader.highlightBlocks(document.currentScript.parentNode);
+                    }
+                </script></pre>
+
+<p><pay-to-read data-ammount="1" data-id="3"><br>
+<br>
+嵌套的付费内容<pay-to-read data-ammount="4" data-id="4">123</pay-to-read><br>
+<br>
+<reply2see>1234</reply2see><br>
+<br>
+</pay-to-read></p>
+
+<p><reply2see><div class="ptr-block ptr-payment-require" data-ammount="4" data-id="5"><span>Payment Required</span><button class="ptr-pay-btn">Pay</button></div></reply2see></p>
+    [7] => 753
+    [8] => 540
+    [9] => <pre><code>123</code><script async="" crossorigin="anonymous" data-hljs-style="github" integrity="sha384-fSWmbgQwbzLXpKFwOj6DlXOstUp9/gRcSSNLI50wWQYg7XIihuBcYUTG/GR7ocjz" src="https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.33/loader.min.js"></script><script>
+                    if(window.hljsLoader && !document.currentScript.parentNode.hasAttribute('data-s9e-livepreview-onupdate')) {
+                        window.hljsLoader.highlightBlocks(document.currentScript.parentNode);
+                    }
+                </script></pre>
+
+<p><div class="ptr-block ptr-payment-require" data-ammount="1" data-id="3"><span>Payment Required</span><button class="ptr-pay-btn">Pay</button></div></p>
+
+<p><reply2see><div class="ptr-block ptr-payment-require" data-ammount="4" data-id="5"><span>Payment Required</span><button class="ptr-pay-btn">Pay</button></div></reply2see></p>
+    [10] => <pre><code>123</code><script async="" crossorigin="anonymous" data-hljs-style="github" integrity="sha384-fSWmbgQwbzLXpKFwOj6DlXOstUp9/gRcSSNLI50wWQYg7XIihuBcYUTG/GR7ocjz" src="https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.33/loader.min.js"></script><script>
+                    if(window.hljsLoader && !document.currentScript.parentNode.hasAttribute('data-s9e-livepreview-onupdate')) {
+                        window.hljsLoader.highlightBlocks(document.currentScript.parentNode);
+                    }
+                </script></pre>
+
+<p><div class="ptr-block ptr-payment-require" data-ammount="1" data-id="3"><span>Payment Required</span><button class="ptr-pay-btn">Pay</button></div></p>
+
+<p><reply2see><div class="ptr-block ptr-payment-require" data-ammount="4" data-id="5"><span>Payment Required</span><button class="ptr-pay-btn">Pay</button></div></reply2see></p>
+    [11] => 540
+    [12] => 613
+)

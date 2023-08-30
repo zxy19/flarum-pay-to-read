@@ -1,0 +1,27 @@
+xypp-pay-to-read:
+  # For more details on the format
+  # Checkout https://docs.flarum.org/extend/i18n/#appendix-a-standard-key-format
+  admin:
+    settings:
+      max-stack:
+        label: 最大嵌套层数
+        desc: 超过最大层数的将不做付费块渲染（直接显示）
+    permission:
+      bypass: 绕过付费。
+  forum:
+    payment-req:
+      text: 作者将该内容设置为付费可见。价格 {0} 量见币
+      btn: 购买
+    payment:
+      title: 购买确认
+      tip: 购买此内容需要 {0} 量见币，您现在拥有 {1} 。 确认继续吗?
+      btn: 购买内容
+      loading: 正在加载支付信息
+    error:
+      paid: 您已经购买过该内容。尝试刷新页面。
+      missing: 没有找到该内容。
+      no_enough_money: 你没有足够的钱。
+      internal_err: 内部错误。
+    editor:
+      help: 不填写id参数将创建新的付费阅读，不修改原有的id则已经付费的用户可继续阅读
+      label: 插入付费阅读
