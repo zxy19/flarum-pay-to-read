@@ -39,7 +39,6 @@ class TagPicker{
             }
         }
         if($updateId){
-            file_put_contents("/flarum/app/111111.txt",print_r($closedTag,true));
             $idmx = 0;
             for($i = count($closedTag) - 1;$i >= 0;$i--){
                 $tg = $closedTag[$i];
