@@ -190,7 +190,7 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default().initializers.add('xypp/p
           return flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default().modal.show((flarum_forum_components_LogInModal__WEBPACK_IMPORTED_MODULE_1___default()));
         });
       }
-      $(".ptr-block").each(function (idx, element) {
+      $(".ptr-block.ptr-payment-require").each(function (idx, element) {
         $(element).find("span").text(flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default().translator.trans("xypp-pay-to-read.forum.payment-req.text", [$(element).attr("data-ammount")]).join(""));
       });
     }

@@ -26,7 +26,7 @@ app.initializers.add('xypp/pay-to-read', () => {
                     .off("click")
                     .on("click", () => app.modal.show(LogInModal));
             }
-            $(".ptr-block").each((idx, element) => {
+            $(".ptr-block.ptr-payment-require").each((idx, element) => {
                 $(element)
                     .find("span")
                     .text(
