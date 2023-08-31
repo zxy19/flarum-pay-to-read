@@ -21,7 +21,7 @@ export default class PayModal extends Modal {
             <div className="Modal-body">
                 {this.tipText}
                 <div className='paymodal-btn'>
-                    <Button loading={this.loading} disabled={this.loading} onclick={this.pay} data-id={this.item_id}>
+                    <Button class='Button Button--primary' loading={this.loading} disabled={this.loading} onclick={this.pay} data-id={this.item_id}>
                         {this.btnText}
                     </Button>
                 </div>

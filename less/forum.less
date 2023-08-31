@@ -1,20 +1,50 @@
-.ptr-block{
-    border:2px gray dashed;
+.ptr-block {
+    border: 2px gray dashed;
     border-radius: 3px;
     padding: 5px;
+    .ptr-payment-tip {
+        color: #1971c2;
+        text-align: center;
+        font-weight: bold;
+        position: relative;
+        .ptr-haspaid-tip {
+            color: #adb5bd;
+            text-align: center;
+            font-size: 10px;
+            position: absolute;
+            top: -6px;
+            right: -3px;
+        }
+    }
+    .ptr-tip-line{
+        display: grid;
+        .ptr-pay-tip{
+            padding: 5px;
+        }
+        .ptr-pay-btn{
+            grid-column: 6;
+        }
+    }
 }
-.ptr-payment-require{
+
+.ptr-payment-require {
     border-color: #ff8787;
     padding: 15px;
+    .ptr-payment-tip {
+        color: #ff8787!important;
+    }
 }
-.ptr-paid{
+
+.ptr-paid {
+    border: 2px #1971c2  dashed;
     padding: 10px;
 }
-.ptr-pay-btn{
+
+.ptr-pay-btn {
     margin-left: 15px;
 }
 
-.paymodal-btn{
+.paymodal-btn {
     margin-top: 15px;
     text-align: center;
 }

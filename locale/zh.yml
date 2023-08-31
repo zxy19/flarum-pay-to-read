@@ -7,6 +7,10 @@ xypp-pay-to-read:
     permission:
       bypass: 绕过付费。
   forum:
+    nopaidTip: 无人付费
+    haspaidTip: "{0}人付费"
+    paymentTip: 本贴的付费阅读内容
+    payment-notfound: ID为{0}的付费内容未找到。请检查ID是否正确，或编辑此处，删除‘id={0}’。
     payment-req:
       text: 作者将该内容设置为付费可见。价格 {0} 币
       btn: 购买

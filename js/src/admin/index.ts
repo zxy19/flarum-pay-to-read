@@ -1,5 +1,4 @@
 import app from 'flarum/admin/app';
-import SettingPanel from './components/SettingPanel';
 
 app.initializers.add('xypp/pay-to-read', () => {
   app.extensionData

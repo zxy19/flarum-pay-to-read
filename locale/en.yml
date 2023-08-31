@@ -9,6 +9,10 @@ xypp-pay-to-read:
     permission:
       bypass: Bypass payment.
   forum:
+    nopaidTip: No one paid
+    haspaidTip: "{0} users paid"
+    paymentTip: Pay-to-read content
+    payment-notfound: Payment ID#{0} not found。check the id in post or simply remove ‘id={0}’。
     payment-req:
       text: Author has set the content to be paid. Priced {0} 量见币
       btn: Pay

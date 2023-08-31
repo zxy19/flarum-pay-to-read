@@ -18,6 +18,7 @@ use Flarum\Post\Event\Deleting as EventPostDeleting;
 use Flarum\Post\Post;
 use s9e\TextFormatter\Configurator;
 use Xypp\PayToRead\Serializer\PostRender;
+use Xypp\PayToRead\Serializer\HasPayUserSerializer;
 use Flarum\Api\Serializer\PostSerializer;
 return [
     (new Extend\Frontend('forum'))
@@ -39,6 +40,7 @@ return [
         ->belongsTo("user",User::class,"id","user_id")
         ->belongsTo("post",Post::class,"id","post_id"),
     (new Extend\Model(Post::class))
+        ->hasMany("payItem",PayItem::class,"post_id","id")
         ->hasMany("payment",Payment::class,"user_id","id"),
     (new Extend\Formatter)
         ->configure(function (Configurator $config) {

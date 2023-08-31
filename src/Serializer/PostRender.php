@@ -5,6 +5,7 @@ use Flarum\Database\AbstractModel;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Xypp\PayToRead\Utils\TagPicker;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Xypp\PayToRead\PayItem;
 use Xypp\PayToRead\Payment;
 class PostRender
 {
@@ -43,23 +44,36 @@ class PostRender
                 }
             }
             $earlist = -1;
+            $inPostId = [];
+            foreach(PayItem::where("post_id","=",$post->id)->get() as $item){
+                $inPostId[$item->id]=true;
+            }
             for($i = count($tags) - 1;$i >= 0;$i -- ){
                 $exceedMaxStack = ($tags[$i]['params']['depth'] > $maxStack);
-                if(!isset($paidId[$tags[$i]['params']['id']]) && !$bypass && !$exceedMaxStack){
+                if(!isset($inPostId[$tags[$i]['params']['id']])){
                     [$st,$_]=$tags[$i]['start_tag'];
                     [$_,$ed]=$tags[$i]['end_tag'];
                     if($st < $earlist || $earlist == -1){
                         $earlist = $st;
                     }else continue;
                     $content=substr_replace($content,
-                    "<div class=\"ptr-block ptr-payment-require\" data-ammount=\""
+                    "<div class=\"ptr-block ptr-render ptr-notfound\" data-id=\""
+                    .$tags[$i]['params']['id']
+                    ."\"></div>"
+                    ,$st,$ed-$st+1);
+                }
+                elseif(!isset($paidId[$tags[$i]['params']['id']]) && !$bypass && !$exceedMaxStack){
+                    [$st,$_]=$tags[$i]['start_tag'];
+                    [$_,$ed]=$tags[$i]['end_tag'];
+                    if($st < $earlist || $earlist == -1){
+                        $earlist = $st;
+                    }else continue;
+                    $content=substr_replace($content,
+                    "<div class=\"ptr-block ptr-render ptr-payment-require\" data-ammount=\""
                     .$tags[$i]['params']['ammount']
                     ."\" data-id=\""
                     .$tags[$i]['params']['id']
-                    ."\"><span>Payment Required</span><button class=\"ptr-pay-btn\">"
-                    .$this->translator->trans('xypp-pay-to-read.forum.payment-req.btn')
-                    ."</button>"
-                    ."</div>"
+                    ."\"></div>"
                     ,$st,$ed-$st+1);
                 }else{
                     [$st,$ed]=$tags[$i]['end_tag'];
@@ -69,11 +83,14 @@ class PostRender
                     $content=substr_replace($content,"</div>",$st,$ed-$st+1);
                 }
             }
-            $content = str_ireplace("<pay-to-read","<div class=\"ptr-block ptr-paid\"",$content);
+            $content = str_ireplace("<pay-to-read","<div class=\"ptr-block ptr-paid  ptr-render\"",$content);
+            $items = Payment::selectRaw("count(id) as cnt,item_id")->where("post_id","=",$post->id)->groupBy("item_id")->get();
+            foreach($items as $item){
+                $content = str_ireplace("data-id=\"".$item->item_id."\"","data-id=\"".$item->item_id."\" data-haspaid-cnt=\"".$item->cnt."\"",
+                $content);
+            }
             $attributes["contentHtml"] = $content;
         }
         return $attributes;
     }
 }
-
-?>
