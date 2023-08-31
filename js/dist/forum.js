@@ -93,6 +93,7 @@ var PayModal = /*#__PURE__*/function (_Modal) {
         _this2.loading = false;
         _this2.tipText = flarum_forum_app__WEBPACK_IMPORTED_MODULE_2___default().translator.trans('xypp-pay-to-read.forum.payment.tip', [result.ammount, result.user_money]);
         _this2.btnText = flarum_forum_app__WEBPACK_IMPORTED_MODULE_2___default().translator.trans('xypp-pay-to-read.forum.payment.btn');
+        m.redraw();
       } else {
         flarum_forum_app__WEBPACK_IMPORTED_MODULE_2___default().modal.close();
         flarum_forum_app__WEBPACK_IMPORTED_MODULE_2___default().alerts.show({

@@ -44,6 +44,7 @@ export default class PayModal extends Modal {
                 [result.ammount,result.user_money]
                 );
                 this.btnText = app.translator.trans('xypp-pay-to-read.forum.payment.btn');
+                m.redraw();
             } else {
                 app.modal.close();
                 app.alerts.show(
