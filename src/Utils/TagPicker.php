@@ -5,6 +5,7 @@ class TagPicker{
         $inCodeBlock = false;
         $queue = array();
         $closedTag = array();
+        $startPos = array();
         $result = "";
         for($i=0;$i<strlen($content);$i++){
             if(!$inCodeBlock && substr($content,$i,4) == "[pay"){
@@ -31,7 +32,8 @@ class TagPicker{
                 $top['end_tag'] = array($i,$i+5);
                 $top['params']['depth']=count($queue);
                 $top['params']['new']=false;
-                array_push($closedTag,$top);
+                $idx = array_push($closedTag,$top) - 1;
+                $startPos[$idx] = $top['start_tag'][0];
                 $i = $i + 5;
             }else if(substr($content,$i,3) == '```'){
                 $i = $i + 2;
@@ -40,20 +42,20 @@ class TagPicker{
         }
         if($updateId){
             $idmx = 0;
-            for($i = count($closedTag) - 1;$i >= 0;$i--){
+            arsort($startPos);
+            foreach($startPos as $i=>$_){
                 $tg = $closedTag[$i];
                 if(!isset($tg['params']['id'])){
                     $id = $idmx++;
                     $closedTag[$i]['params']['new']=true;
                     $closedTag[$i]['params']['id']=$id;
-                    $content_p2 = str_split($content,$tg['start_tag'][1]);
-                    $content = $content_p2[0]." id=[newId]#".$id."#[/newId]".$content_p2[1];
+                    $content = substr_replace($content," id=[newId]#".$id."#[/newId]",$tg['start_tag'][1],0);
                 }
             }
         }
         return [$closedTag,$content];
     }
-    public static function TagPickerHTML(string $content,bool $updateId = true){
+    public static function TagPickerHTML(string $content){
         $inCodeBlock = false;
         $queue = array();
         $closedTag = array();
@@ -95,20 +97,6 @@ class TagPicker{
             }else if(substr($content,$i,6) == '</pre>'){
                 $i = $i + 5;
                 $inCodeBlock = false;
-            }
-        }
-        if($updateId){
-            // 补齐ID：新建项目的ID创建
-            $idmx = 0;
-            for($i = count($closedTag) - 1;$i >= 0;$i--){
-                $tg = $closedTag[$i];
-                if(!isset($tg['params']['id'])){
-                    $id = ($idmx++);
-                    $closedTag[$i]['params']['new']=true;
-                    $closedTag[$i]['params']['id']=$id;
-                    $content_p2 = str_split($content,$tg['start_tag'][1]);
-                    $content = $content_p2[0]." id=".$id.$content_p2[1];
-                }
             }
         }
         return [$closedTag,$content];

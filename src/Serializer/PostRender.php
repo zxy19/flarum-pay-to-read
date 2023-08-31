@@ -16,13 +16,18 @@ class PostRender
         $this->settings = $settings;
     }
     public function __invoke(PostSerializer $serializer, AbstractModel $post, array $attributes){
+        set_error_handler(function ($error_no, $error_msg, $error_file, $error_line) {
+        }, E_ALL | E_STRICT);
         $maxStack = intval($this->settings->get('xypp.ptr.max-stack',3));
         if (isset($attributes["contentHtml"])) {
             $user=$serializer->getActor();
-            $author = $post['discussion']->user();
+            $author = $post->user()->first();
             // 帖子作者和管理员可见
             $bypass = false;
-            if ($user->isAdmin() || (!$user->isGuest() && $user->id == $author->id)) {
+            if (!$user->isGuest() && $user->isAdmin()) {
+                $bypass = true;
+            }
+            if($author && !$user->isGuest() && $user->id == $author->id){
                 $bypass = true;
             }
             if(!$user->isGuest() && $user->can("post.ptr-bypassPayment")){
