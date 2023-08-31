@@ -30,16 +30,16 @@ return [
     (new Extend\Event())
         ->listen(EventPostSaving::class, Listener\PostSaving::class)
         ->listen(EventPostDeleting::class, Listener\PostDeleting::class),
-    (new Extend\Model(Payment::class))
-        ->belongsTo("user",User::class,"id","user_id")
-        ->belongsTo("post",Post::class,"id","post_id")
-        ->belongsTo("payItem",PayItem::class,"id","item_id"),
-    (new Extend\Model(PayItem::class))
-        ->hasMany("payItem",PayItem::class,"item_id","id")
-        ->belongsTo("user",User::class,"id","user_id")
-        ->belongsTo("post",Post::class,"id","post_id"),
-    (new Extend\Model(Post::class))
-        ->hasMany("payment",Payment::class,"user_id","id"),
+    (new Extend\Model(Payment::class)),
+        // ->belongsTo("user",User::class,"id","user_id")
+        // ->belongsTo("post",Post::class,"id","post_id")
+        // ->belongsTo("payItem",PayItem::class,"id","item_id"),
+    (new Extend\Model(PayItem::class)),
+        // ->hasMany("payItem",PayItem::class,"item_id","id")
+        // ->belongsTo("user",User::class,"id","user_id")
+        // ->belongsTo("post",Post::class,"id","post_id"),
+    // (new Extend\Model(Post::class))
+        // ->hasMany("payment",Payment::class,"user_id","id"),
     (new Extend\Formatter)
         ->configure(function (Configurator $config) {
             $config->BBCodes->addCustom(
