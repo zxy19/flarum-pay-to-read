@@ -56,5 +56,4 @@ return [
         ->attributes(PostRender::class),
     (new Extend\Settings())
         ->default('xypp.ptr.max-stack', 3),
-    
 ];

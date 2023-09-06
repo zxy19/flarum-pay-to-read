@@ -35,7 +35,7 @@ class PostRender
                 $bypass = true;
             }
             $content = $attributes["contentHtml"];
-            [$tags,$_]=TagPicker::TagPickerHTML($content,false);
+            [$tags,$_]=TagPicker::TagPickerHTML($content);
             $paidId = array();
             if (!$user->isGuest() && !$bypass) {
                 $paid = Payment::where("user_id","=",$user->id)->where("post_id","=",$post->id)->get();

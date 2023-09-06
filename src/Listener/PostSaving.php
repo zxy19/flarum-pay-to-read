@@ -89,7 +89,7 @@ class PostSaving
                 array_push($rmIdList, $tag['params']['id']);
             }
         }
-        PayItem::whereIn("id", $rmIdList)->delete();
+        PayItem::whereIn("id", $rmIdList)->where("post_id","=",$post->id)->delete();
         if(count($laterPostId)){
             $post->afterSave(function($post) use ($laterPostId){
                 PayItem::whereIn("id", $laterPostId)->update(["post_id"=>$post->id]);

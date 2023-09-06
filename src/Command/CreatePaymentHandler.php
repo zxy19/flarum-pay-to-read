@@ -3,7 +3,9 @@
 namespace Xypp\PayToRead\Command;
 
 use Flarum\User\User;
+use Illuminate\Events\Dispatcher;
 use Illuminate\Support\Arr;
+use Xypp\PayToRead\Event\PurchaseEvent;
 use Xypp\PayToRead\PayItem;
 use Xypp\PayToRead\Payment;
 use Xypp\PayToRead\PaymentRepository;
@@ -13,14 +15,16 @@ class CreatePaymentHandler
 {
     protected $repository;
     protected $payItemRepository;
-
+    protected $events;
     public function __construct(
         PaymentRepository $repository,
-        PayItemRepository $payItemRepository
+        PayItemRepository $payItemRepository, 
+        Dispatcher $events
     )
     {
         $this->repository = $repository;
         $this->payItemRepository = $payItemRepository;
+        $this->events = $events;
     }
 
     public function handle(CreatePayment $command)
@@ -48,6 +52,13 @@ class CreatePaymentHandler
                 $user->id
             );
             $payment->save();
+            $this->events->dispatch(
+                new PurchaseEvent(
+                    $user,
+                    $payment,
+                    $payItem
+                )
+            );
             return $payment;
         }
         return Payment::build(-1,-1,-2,false);
