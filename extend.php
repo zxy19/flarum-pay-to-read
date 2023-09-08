@@ -19,7 +19,7 @@ use Flarum\Post\Post;
 use s9e\TextFormatter\Configurator;
 use Xypp\PayToRead\Serializer\PostRender;
 use Xypp\PayToRead\Serializer\HasPayUserSerializer;
-use Flarum\Api\Serializer\PostSerializer;
+use Flarum\Api\Serializer\BasicPostSerializer;
 return [
     (new Extend\Frontend('forum'))
         ->js(__DIR__.'/js/dist/forum.js')
@@ -54,9 +54,8 @@ return [
     (new Extend\Routes('api'))
         ->post('/pay-to-read/payment/pay', 'ptr.payment.create', Api\Controller\CreatePaymentController::class)
         ->get('/pay-to-read/payment/', 'ptr.payment.get', Api\Controller\QueryPaymentController::class),
-    (new Extend\ApiSerializer(PostSerializer::class))
+    (new Extend\ApiSerializer(BasicPostSerializer::class))
         ->attributes(PostRender::class),
-    
     (new Extend\Settings())
         ->default('xypp.ptr.max-stack', 3),
 ];

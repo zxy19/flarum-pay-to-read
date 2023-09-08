@@ -1,6 +1,6 @@
 <?php
 namespace Xypp\PayToRead\Serializer;
-use Flarum\Api\Serializer\PostSerializer;
+use Flarum\Api\Serializer\BasicPostSerializer;
 use Flarum\Database\AbstractModel;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Xypp\PayToRead\Utils\TagPicker;
@@ -16,7 +16,7 @@ class PostRender
         $this->translator = resolve(TranslatorInterface::class);
         $this->settings = $settings;
     }
-    public function __invoke(PostSerializer $serializer, AbstractModel $post, array $attributes){
+    public function __invoke(BasicPostSerializer $serializer, AbstractModel $post, array $attributes){
         set_error_handler(function ($error_no, $error_msg, $error_file, $error_line) {
         }, E_ALL | E_STRICT);
         $maxStack = intval($this->settings->get('xypp.ptr.max-stack',3));
