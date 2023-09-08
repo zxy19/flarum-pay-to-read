@@ -81,13 +81,13 @@ class TagPicker{
                 }
                 array_push($queue,array("start_tag"=>array($start,$end),"end_tag"=>null,"params"=>$params));
                 $i = $end;
-            }else if(!$inCodeBlock && substr($content,$i,21) == "<pay-to-read /></div>"){
+            }else if(!$inCodeBlock && substr($content,$i,33) == "<pay-to-read></pay-to-read></div>"){
                 $top = array_pop($queue);
-                $top['end_tag'] = array($i,$i+20);
+                $top['end_tag'] = array($i,$i+32);
                 $top['params']['depth']=count($queue);
                 $top['params']['new']=false;
                 array_push($closedTag,$top);
-                $i = $i + 19;
+                $i = $i + 30;
             }else if(substr($content,$i,4) == '<pre'){
                 $cnxt = substr($content,$i+4,1);
                 if($cnxt == ">" || $cnxt == " " || $cnxt == "\t"){
