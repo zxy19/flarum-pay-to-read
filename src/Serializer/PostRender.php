@@ -83,7 +83,7 @@ class PostRender
                     $content=substr_replace($content,"</div>",$st,$ed-$st+1);
                 }
             }
-            $content = str_ireplace("<pay-to-read","<div class=\"ptr-block ptr-paid  ptr-render\"",$content);
+            $content = str_ireplace("<div class=\"pay-to-read\"","<div class=\"ptr-block ptr-paid  ptr-render\"",$content);
             $items = Payment::selectRaw("count(id) as cnt,item_id")->where("post_id","=",$post->id)->groupBy("item_id")->get();
             foreach($items as $item){
                 $content = str_ireplace("data-id=\"".$item->item_id."\"","data-id=\"".$item->item_id."\" data-haspaid-cnt=\"".$item->cnt."\"",

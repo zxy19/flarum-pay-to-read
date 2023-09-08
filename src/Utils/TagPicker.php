@@ -60,7 +60,7 @@ class TagPicker{
         $queue = array();
         $closedTag = array();
         for($i=0;$i<strlen($content);$i++){
-            if(!$inCodeBlock && substr($content,$i,12) == "<pay-to-read"){
+            if(!$inCodeBlock && substr($content,$i,24) == "<div class=\"pay-to-read\""){
                 $start = $i;
                 $end = strpos($content,">",$i);
                 if($end === false){
@@ -81,13 +81,13 @@ class TagPicker{
                 }
                 array_push($queue,array("start_tag"=>array($start,$end),"end_tag"=>null,"params"=>$params));
                 $i = $end;
-            }else if(!$inCodeBlock && substr($content,$i,14) == "</pay-to-read>"){
+            }else if(!$inCodeBlock && substr($content,$i,21) == "<pay-to-read /></div>"){
                 $top = array_pop($queue);
-                $top['end_tag'] = array($i,$i+13);
+                $top['end_tag'] = array($i,$i+20);
                 $top['params']['depth']=count($queue);
                 $top['params']['new']=false;
                 array_push($closedTag,$top);
-                $i = $i + 5;
+                $i = $i + 19;
             }else if(substr($content,$i,4) == '<pre'){
                 $cnxt = substr($content,$i+4,1);
                 if($cnxt == ">" || $cnxt == " " || $cnxt == "\t"){

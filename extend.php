@@ -45,8 +45,10 @@ return [
     (new Extend\Formatter)
         ->configure(function (Configurator $config) {
             $config->BBCodes->addCustom(
-                '[pay ammount={TEXT1} id={TEXT2}]{TEXT}[/pay]',
-                '<pay-to-read data-ammount={TEXT1} data-id={TEXT2}>{TEXT}</pay-to-read>'
+                '[pay ammount={UINT} id={UINT}]{TEXT}[/pay]',
+                '<div class="pay-to-read" data-ammount="{@ammount}" data-id="{@id}">
+                <xsl:apply-templates />
+                <pay-to-read /></div>'
             );
         }),
     (new Extend\Routes('api'))
@@ -54,6 +56,7 @@ return [
         ->get('/pay-to-read/payment/', 'ptr.payment.get', Api\Controller\QueryPaymentController::class),
     (new Extend\ApiSerializer(PostSerializer::class))
         ->attributes(PostRender::class),
+    
     (new Extend\Settings())
         ->default('xypp.ptr.max-stack', 3),
 ];
