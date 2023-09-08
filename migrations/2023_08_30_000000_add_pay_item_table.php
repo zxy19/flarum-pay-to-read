@@ -12,5 +12,3 @@ return Migration::createTable(
         $table->float('ammount');
     }
 );
-
-
