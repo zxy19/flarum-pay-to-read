@@ -18,7 +18,7 @@ class CreatePaymentHandler
     protected $events;
     public function __construct(
         PaymentRepository $repository,
-        PayItemRepository $payItemRepository, 
+        PayItemRepository $payItemRepository,
         Dispatcher $events
     )
     {
@@ -42,10 +42,10 @@ class CreatePaymentHandler
         if(!$payItem){
             return Payment::build(-1,-1,-1,false);
         }
-        $ammount = floatval($payItem->ammount);
-        if($user->money >= $ammount){
-            User::where("id","=",$user->id)->lockForUpdate()->decrement('money',$ammount);
-            User::where("id","=",$payItem->author)->lockForUpdate()->increment('money',$ammount);
+        $amount = floatval($payItem->amount);
+        if($user->money >= $amount){
+            User::where("id","=",$user->id)->lockForUpdate()->decrement('money',$amount);
+            User::where("id","=",$payItem->author)->lockForUpdate()->increment('money',$amount);
             $payment = Payment::build(
                 $payItem->post_id,
                 $payItem->id,

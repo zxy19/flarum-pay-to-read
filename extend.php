@@ -16,6 +16,7 @@ use Flarum\Extend\Model;
 use Flarum\Post\Event\Saving as EventPostSaving;
 use Flarum\Post\Event\Deleting as EventPostDeleting;
 use Flarum\Post\Post;
+use Flarum\User\User;
 use s9e\TextFormatter\Configurator;
 use Xypp\PayToRead\Serializer\PostRender;
 use Xypp\PayToRead\Serializer\HasPayUserSerializer;
@@ -45,8 +46,8 @@ return [
     (new Extend\Formatter)
         ->configure(function (Configurator $config) {
             $config->BBCodes->addCustom(
-                '[pay ammount={UINT} id={UINT}]{TEXT}[/pay]',
-                '<div class="pay-to-read" data-ammount="{@ammount}" data-id="{@id}">
+                '[pay amount={UINT} id={UINT}]{TEXT}[/pay]',
+                '<div class="pay-to-read" data-amount="{@amount}" data-id="{@id}">
                 <xsl:apply-templates />
                 <pay-to-read /></div>'
             );

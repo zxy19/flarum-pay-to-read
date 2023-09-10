@@ -69,8 +69,8 @@ class PostRender
                         $earlist = $st;
                     }else continue;
                     $content=substr_replace($content,
-                    "<div class=\"ptr-block ptr-render ptr-payment-require\" data-ammount=\""
-                    .$tags[$i]['params']['ammount']
+                    "<div class=\"ptr-block ptr-render ptr-payment-require\" data-amount=\""
+                    .$tags[$i]['params']['amount']
                     ."\" data-id=\""
                     .$tags[$i]['params']['id']
                     ."\"></div>"

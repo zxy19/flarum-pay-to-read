@@ -17,6 +17,11 @@
             "name": "小鱼飘飘",
             "email": "z@xypp.cc",
             "role": "Developer"
+        },
+        {
+            "name": "FoskyM",
+            "email": "i@fosky.top",
+            "role": "Developer"
         }
     ],
     "autoload": {

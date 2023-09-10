@@ -46,12 +46,12 @@ class QueryPaymentController implements RequestHandlerInterface
         if($payment){
             return new JsonResponse(["code"=>301,"status"=>"paid"]);
         }
-        
+
         return new JsonResponse([
             "code"=>200,
             "status"=>"unpaid",
             "user_money"=>$userMoney,
-            "ammount"=>$payItem->ammount
+            "amount"=>$payItem->amount
         ]);
     }
 }
