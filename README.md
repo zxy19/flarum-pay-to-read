@@ -4,6 +4,8 @@
 
 一个 [Flarum](http://flarum.org) 使用的付费阅读插件。支持了最基本的付费阅读设置操作。
 
+基于 `antoinefr/flarum-ext-money`
+
 ## 使用说明
 
 安装插件后，在管理员后台启用该插件，即可在Composer编辑器中看到付费可见图标。
@@ -11,7 +13,7 @@
 点击图标，将插入如下BBCode：
 
 ```plain
-[pay ammount=1]...这里是你设置的提示语[/pay]
+[pay amount=1]...这里是你设置的提示语[/pay]
 ```
 
 将提示语删除，并换成你的内容，保存即可生效。
@@ -20,7 +22,7 @@
 编辑帖子时，你将看到pay后面多了个ID
 
 ```plain
-[pay ammount=1 id=1]
+[pay amount=1 id=1]
 ...内容
 [/pay]
 ```

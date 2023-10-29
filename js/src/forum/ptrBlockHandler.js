@@ -3,7 +3,8 @@ import LogInModal from "flarum/forum/components/LogInModal";
 import DiscussionPage from "flarum/forum/components/DiscussionPage";
 import PayModal from './components/PayModal';
 import {transStr2Str} from "../common/transUtil"
-export function handlePtrBlock() {
+export function handlePtrBlock(e) {
+  console.log(e)
     if (app.current.matches(DiscussionPage)) {
         $(".ptr-block.ptr-payment-require.ptr-render").each((idx, element) => {
             $(element)
@@ -19,7 +20,7 @@ export function handlePtrBlock() {
                                 .addClass("ptr-pay-tip")
                                 .text(
                                     app.translator.trans("xypp-pay-to-read.forum.payment-req.text",
-                                        [$(element).attr("data-ammount")]).join("")
+                                        [$(element).attr("data-amount")]).join("")
                                 )
                         )
                 )
@@ -47,7 +48,7 @@ export function handlePtrBlock() {
                     .addClass("ptr-payment-tip")
                     .text(app.translator.trans(
                         "xypp-pay-to-read.forum.paymentTip", [
-                        $(element).attr("data-ammount")
+                        $(element).attr("data-amount")
                     ])).append(
                         $("<div></div>")
                             .addClass("ptr-haspaid-tip")

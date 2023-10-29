@@ -4,7 +4,7 @@ import Button from 'flarum/components/Button';
 import setRouteWithForcedRefresh from "flarum/common/utils/setRouteWithForcedRefresh";
 import Alert from "flarum/common/components/Alert/Alert"
 export default class PayModal extends Modal {
-    loading = false;
+    loading = true;
     tipText = app.translator.trans('xypp-pay-to-read.forum.payment.loading');
     btnText = app.translator.trans('xypp-pay-to-read.forum.payment.loading');
     item_id = -1;
@@ -40,8 +40,8 @@ export default class PayModal extends Modal {
         }).then((result) => {
             if (result.code == "200") {
                 this.loading = false;
-                this.tipText = app.translator.trans('xypp-pay-to-read.forum.payment.tip', 
-                [result.ammount,result.user_money]
+                this.tipText = app.translator.trans('xypp-pay-to-read.forum.payment.tip',
+                [result.amount,result.user_money]
                 );
                 this.btnText = app.translator.trans('xypp-pay-to-read.forum.payment.btn');
                 m.redraw();

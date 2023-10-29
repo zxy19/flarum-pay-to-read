@@ -9,6 +9,6 @@ return Migration::createTable(
         $table->increments('id');
         $table->unsignedInteger('post_id');
         $table->unsignedInteger('author');
-        $table->float('ammount');
+        $table->float('amount');
     }
 );

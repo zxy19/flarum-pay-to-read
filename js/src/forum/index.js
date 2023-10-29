@@ -7,13 +7,13 @@ import {handlePtrBlock} from "./ptrBlockHandler";
 app.initializers.add('xypp/pay-to-read', () => {
     // let payment = app.store.createRecord("payment");
     // payment.save({user_id:1}).then(console.log).catch(console.log);
-    extend(CommentPost.prototype, "content",handlePtrBlock);
+    extend(CommentPost.prototype, "oncreate",handlePtrBlock);
     extend(TextEditor.prototype, "toolbarItems", function (items) {
         items.add(
           "pay-to-read",
           <TextEditorButton
             onclick={() => {
-              this.attrs.composer.editor.insertAtCursor("[pay ammount=1]"+
+              this.attrs.composer.editor.insertAtCursor("[pay amount=1]"+
               app.translator.trans("xypp-pay-to-read.forum.editor.help")+
               "[/pay]");
               const range = this.attrs.composer.editor.getSelectionRange();

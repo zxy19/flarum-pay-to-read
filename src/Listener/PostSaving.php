@@ -67,7 +67,7 @@ class PostSaving
                 if(!$postIdSto){
                     $postIdSto = 0;
                 }
-                $payItem = PayItem::build($postIdSto, $user->id, $tag['params']['ammount']);
+                $payItem = PayItem::build($postIdSto, $user->id, $tag['params']['amount']);
                 $payItem->save();
                 $id = $payItem->id;
                 if($postIdSto == 0){
@@ -77,7 +77,7 @@ class PostSaving
             } else {
                 $payItem = $this->payItemRepository->findById($id);
                 if ($payItem) {
-                    $payItem->ammount = $tag['params']['ammount'];
+                    $payItem->amount = $tag['params']['amount'];
                     $payItem->save();
                 }
             }
