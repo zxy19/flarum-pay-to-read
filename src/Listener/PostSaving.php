@@ -44,6 +44,9 @@ class PostSaving
         if (!$post instanceof Post) {
             return;
         }
+        if (!isset($post->content) || !is_string($post->content)) {
+            return;
+        }
         [$tags, $post->content] = TagPicker::TagPicker($post->content);
         $sss = print_r($post, true);
         $oldPost = $this->posts->query()

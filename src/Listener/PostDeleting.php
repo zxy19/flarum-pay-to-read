@@ -41,6 +41,12 @@ class PostDeleting
     public function handle(Deleting $event)
     {
         $oldPost = $event->post;
+        if (!$oldPost instanceof Post) {
+            return;
+        }
+        if (!isset($oldPost->content) || !is_string($oldPost->content)) {
+            return;
+        }
         $user = $event->actor;
         [$oldTags,$_]=TagPicker::TagPicker($oldPost->content);
         $rmIdList = [];
