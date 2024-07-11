@@ -18,31 +18,33 @@ use Flarum\Post\Event\Deleting as EventPostDeleting;
 use Flarum\Post\Post;
 use Flarum\User\User;
 use s9e\TextFormatter\Configurator;
+use Xypp\PayToRead\Listener\BeforeSendingNotifaction;
 use Xypp\PayToRead\Serializer\PostRender;
 use Xypp\PayToRead\Serializer\HasPayUserSerializer;
 use Flarum\Api\Serializer\BasicPostSerializer;
+
 return [
     (new Extend\Frontend('forum'))
-        ->js(__DIR__.'/js/dist/forum.js')
-        ->css(__DIR__.'/less/forum.less'),
+        ->js(__DIR__ . '/js/dist/forum.js')
+        ->css(__DIR__ . '/less/forum.less'),
     (new Extend\Frontend('admin'))
-        ->js(__DIR__.'/js/dist/admin.js')
-        ->css(__DIR__.'/less/admin.less'),
-    new Extend\Locales(__DIR__.'/locale'),
+        ->js(__DIR__ . '/js/dist/admin.js')
+        ->css(__DIR__ . '/less/admin.less'),
+    new Extend\Locales(__DIR__ . '/locale'),
     (new Extend\Event())
         ->listen(EventPostSaving::class, Listener\PostSaving::class)
         ->listen(EventPostDeleting::class, Listener\PostDeleting::class),
     (new Extend\Model(Payment::class))
-        ->belongsTo("user",User::class,"id","user_id")
-        ->belongsTo("post",Post::class,"id","post_id")
-        ->belongsTo("payItem",PayItem::class,"id","item_id"),
+        ->belongsTo("user", User::class, "id", "user_id")
+        ->belongsTo("post", Post::class, "id", "post_id")
+        ->belongsTo("payItem", PayItem::class, "id", "item_id"),
     (new Extend\Model(PayItem::class))
-        ->hasMany("payItem",PayItem::class,"item_id","id")
-        ->belongsTo("user",User::class,"id","user_id")
-        ->belongsTo("post",Post::class,"id","post_id"),
+        ->hasMany("payItem", PayItem::class, "item_id", "id")
+        ->belongsTo("user", User::class, "id", "user_id")
+        ->belongsTo("post", Post::class, "id", "post_id"),
     (new Extend\Model(Post::class))
-        ->hasMany("payItem",PayItem::class,"post_id","id")
-        ->hasMany("payment",Payment::class,"user_id","id"),
+        ->hasMany("payItem", PayItem::class, "post_id", "id")
+        ->hasMany("payment", Payment::class, "user_id", "id"),
     (new Extend\Formatter)
         ->configure(function (Configurator $config) {
             $config->BBCodes->addCustom(
@@ -57,6 +59,7 @@ return [
         ->get('/pay-to-read/payment/', 'ptr.payment.get', Api\Controller\QueryPaymentController::class),
     (new Extend\ApiSerializer(BasicPostSerializer::class))
         ->attributes(PostRender::class),
+    (new Extend\Notification())->beforeSending(BeforeSendingNotifaction::class),
     (new Extend\Settings())
         ->default('xypp.ptr.max-stack', 3),
 ];

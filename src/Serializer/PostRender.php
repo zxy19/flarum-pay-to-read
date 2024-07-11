@@ -17,8 +17,6 @@ class PostRender
         $this->settings = $settings;
     }
     public function __invoke(BasicPostSerializer $serializer, AbstractModel $post, array $attributes){
-        set_error_handler(function ($error_no, $error_msg, $error_file, $error_line) {
-        }, E_ALL | E_STRICT);
         $maxStack = intval($this->settings->get('xypp.ptr.max-stack',3));
         if (isset($attributes["contentHtml"])) {
             $user=$serializer->getActor();

@@ -11,6 +11,7 @@ xypp-pay-to-read:
     haspaidTip: "{0}人付费"
     paymentTip: 本贴的付费阅读内容
     payment-notfound: ID为{0}的付费内容未找到。请检查ID是否正确，或编辑此处，删除‘id={0}’。
+    paymentTipMail: 付费内容已隐藏，请查看原贴。
     payment-req:
       text: 作者将该内容设置为付费可见。价格 {0} 币
       btn: 购买
