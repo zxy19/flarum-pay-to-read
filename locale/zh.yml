@@ -26,5 +26,5 @@ xypp-pay-to-read:
       no_enough_money: 你没有足够的钱。
       internal_err: 内部错误。
     editor:
-      help: 不填写id参数将创建新的付费阅读，不修改原有的id则已经付费的用户可继续阅读
+      help: id为空或0将创建新的付费阅读，不修改原有的id则已经付费的用户可继续阅读
       label: 插入付费阅读

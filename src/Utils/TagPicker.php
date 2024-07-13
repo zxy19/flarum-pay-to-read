@@ -53,7 +53,7 @@ class TagPicker
             arsort($startPos);
             foreach ($startPos as $i => $_) {
                 $tg = $closedTag[$i];
-                if (!isset($tg['params']['id'])) {
+                if (!isset($tg['params']['id']) || $tg['params']['id'] == 0) {
                     $id = $idmx++;
                     $closedTag[$i]['params']['new'] = true;
                     $closedTag[$i]['params']['id'] = $id;

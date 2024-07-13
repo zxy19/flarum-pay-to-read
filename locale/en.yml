@@ -28,5 +28,5 @@ xypp-pay-to-read:
       no_enough_money: You have no enough money.
       internal_err: Internal error.
     editor:
-      help: Not fill in the id parameter to create a new pay to read, not modify the original id, then users who have already paid can read.
+      help: Set id to 0 or empty to create a new pay to read, not modify the original id, then users who have already paid can read.
       label: Insert pay to read

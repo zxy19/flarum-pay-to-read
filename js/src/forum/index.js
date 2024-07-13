@@ -13,7 +13,7 @@ app.initializers.add('xypp/pay-to-read', () => {
           "pay-to-read",
           <TextEditorButton
             onclick={() => {
-              this.attrs.composer.editor.insertAtCursor("[pay amount=1]"+
+              this.attrs.composer.editor.insertAtCursor("[pay amount=1 id=0]"+
               app.translator.trans("xypp-pay-to-read.forum.editor.help")+
               "[/pay]");
               const range = this.attrs.composer.editor.getSelectionRange();
