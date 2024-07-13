@@ -61,6 +61,7 @@ class TagPicker
                 }
             }
         }
+        $content = str_ireplace("id=0", "", $content);
         return [$closedTag, $content];
     }
     public static function TagPickerHTML(string $content)
