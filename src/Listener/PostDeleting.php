@@ -43,7 +43,10 @@ class PostDeleting
         if (!$oldPost instanceof Post) {
             return;
         }
-        if (isset($oldPost->attributes['content']) && $oldPost->attributes['content'] && !isset($oldPost->content) || !is_string($oldPost->content)) {
+        if (!isset($oldPost->attributes['content']) || !$oldPost->attributes['content']) {
+            return;
+        }
+        if (!isset($oldPost->content) || !is_string($oldPost->content)) {
             return;
         }
         $user = $event->actor;

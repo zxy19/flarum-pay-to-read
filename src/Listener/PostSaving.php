@@ -44,7 +44,10 @@ class PostSaving
         if (!$post instanceof Post) {
             return;
         }
-        if (isset($post->attributes['content']) && $post->attributes['content'] && !isset($post->content) || !is_string($post->content)) {
+        if (!isset($post->attributes['content']) || !$post->attributes['content']) {
+            return;
+        }
+        if (!isset($post->content) || !is_string($post->content)) {
             return;
         }
         [$tags, $post->content] = TagPicker::TagPicker($post->content);
