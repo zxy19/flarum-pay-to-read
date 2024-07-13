@@ -12,7 +12,7 @@ use Xypp\PayToRead\Utils\TagPicker as TagPicker;
 
 class PostDeleting
 {
-        /**
+    /**
      * @var SettingsRepositoryInterface
      */
     protected $settings;
@@ -28,11 +28,10 @@ class PostDeleting
      * @param PostRepository              $posts
      */
     public function __construct(
-        SettingsRepositoryInterface $settings, 
+        SettingsRepositoryInterface $settings,
         PostRepository $posts,
         PayItemRepository $payItemRepository
-    )
-    {
+    ) {
         $this->settings = $settings;
         $this->posts = $posts;
         $this->payItemRepository = $payItemRepository;
@@ -44,16 +43,16 @@ class PostDeleting
         if (!$oldPost instanceof Post) {
             return;
         }
-        if (!isset($oldPost->content) || !is_string($oldPost->content)) {
+        if ($oldPost->getAttribute("content") && !isset($oldPost->content) || !is_string($oldPost->content)) {
             return;
         }
         $user = $event->actor;
-        [$oldTags,$_]=TagPicker::TagPicker($oldPost->content);
+        [$oldTags, $_] = TagPicker::TagPicker($oldPost->content);
         $rmIdList = [];
-        foreach($oldTags as $tag){
-            array_push($rmIdList,$tag['params']['id']);
+        foreach ($oldTags as $tag) {
+            array_push($rmIdList, $tag['params']['id']);
         }
-        PayItem::whereIn("id",$rmIdList)->delete();
+        PayItem::whereIn("id", $rmIdList)->delete();
         return;
     }
 }
