@@ -65,14 +65,11 @@ class PostSaving
                 $tmpId = $id;
                 $postIdSto = $post->id;
                 if (!$postIdSto) {
-                if (!$postIdSto) {
                     $postIdSto = 0;
                 }
                 $payItem = PayItem::build($postIdSto, $user->id, $tag['params']['amount']);
                 $payItem->save();
                 $id = $payItem->id;
-                if ($postIdSto == 0) {
-                    array_push($laterPostId, $id);
                 if ($postIdSto == 0) {
                     array_push($laterPostId, $id);
                 }
@@ -95,10 +92,6 @@ class PostSaving
                 array_push($rmIdList, $tag['params']['id']);
             }
         }
-        PayItem::whereIn("id", $rmIdList)->where("post_id", "=", $post->id)->delete();
-        if (count($laterPostId)) {
-            $post->afterSave(function ($post) use ($laterPostId) {
-                PayItem::whereIn("id", $laterPostId)->update(["post_id" => $post->id]);
         PayItem::whereIn("id", $rmIdList)->where("post_id", "=", $post->id)->delete();
         if (count($laterPostId)) {
             $post->afterSave(function ($post) use ($laterPostId) {
