@@ -44,7 +44,7 @@ class PostSaving
         if (!$post instanceof Post) {
             return;
         }
-        if (!isset($post->content) || !is_string($post->content)) {
+        if (isset($post->attributes['content']) && $post->attributes['content'] && !isset($post->content) || !is_string($post->content)) {
             return;
         }
         [$tags, $post->content] = TagPicker::TagPicker($post->content);
@@ -64,14 +64,14 @@ class PostSaving
             if ($tag['params']['new']) {
                 $tmpId = $id;
                 $postIdSto = $post->id;
-                if(!$postIdSto){
+                if (!$postIdSto) {
                     $postIdSto = 0;
                 }
                 $payItem = PayItem::build($postIdSto, $user->id, $tag['params']['amount']);
                 $payItem->save();
                 $id = $payItem->id;
-                if($postIdSto == 0){
-                    array_push($laterPostId,$id);
+                if ($postIdSto == 0) {
+                    array_push($laterPostId, $id);
                 }
                 $post->content = str_replace("[newId]#" . $tmpId . "#[/newId]", $id, $post->content);
             } else {
@@ -92,10 +92,10 @@ class PostSaving
                 array_push($rmIdList, $tag['params']['id']);
             }
         }
-        PayItem::whereIn("id", $rmIdList)->where("post_id","=",$post->id)->delete();
-        if(count($laterPostId)){
-            $post->afterSave(function($post) use ($laterPostId){
-                PayItem::whereIn("id", $laterPostId)->update(["post_id"=>$post->id]);
+        PayItem::whereIn("id", $rmIdList)->where("post_id", "=", $post->id)->delete();
+        if (count($laterPostId)) {
+            $post->afterSave(function ($post) use ($laterPostId) {
+                PayItem::whereIn("id", $laterPostId)->update(["post_id" => $post->id]);
             });
         }
         return;
