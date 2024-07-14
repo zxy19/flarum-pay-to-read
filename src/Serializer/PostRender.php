@@ -3,6 +3,7 @@ namespace Xypp\PayToRead\Serializer;
 
 use Flarum\Api\Serializer\BasicPostSerializer;
 use Flarum\Database\AbstractModel;
+use Flarum\Post\CommentPost;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Xypp\PayToRead\Utils\TagPicker;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -21,6 +22,12 @@ class PostRender
     public function __invoke(BasicPostSerializer $serializer, AbstractModel $post, array $attributes)
     {
         $maxStack = intval($this->settings->get('xypp.ptr.max-stack', 3));
+
+        if ($post->content_with_payitem) {
+            $post->setContentAttribute($post->content_with_payitem);
+            $post->content_with_payitem = null;
+            return $serializer->getAttributes($post);
+        }
         if (isset($attributes["contentHtml"])) {
             $user = $serializer->getActor();
             $author = $post->user()->first();

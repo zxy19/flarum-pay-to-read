@@ -42,6 +42,7 @@ class BeforeSendingNotifaction
                     $ed - $st + 1
                 );
             }
+            $content = str_replace("[PAYMENT]", $this->translator->trans("xypp-pay-to-read.forum.paymentTipMail"), $content);
             $post->content = $content;
             $post->setContentAttribute($content);
         }

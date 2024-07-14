@@ -44,11 +44,14 @@ class PostDeleting
         if (!$oldPost instanceof Post) {
             return;
         }
-        if (!Arr::get($oldPost->getAttributes(),"content")) {
+        if (!Arr::get($oldPost->getAttributes(), "content")) {
             return;
         }
         if (!isset($oldPost->content) || !is_string($oldPost->content)) {
             return;
+        }
+        if ($oldPost->content_with_payitem) {
+            $oldPost->content = $oldPost->content_with_payitem;
         }
         $user = $event->actor;
         [$oldTags, $_] = TagPicker::TagPicker($oldPost->content);

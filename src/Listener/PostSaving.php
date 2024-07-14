@@ -45,12 +45,13 @@ class PostSaving
         if (!$post instanceof Post) {
             return;
         }
-        if (!Arr::get($post->getAttributes(),"content")) {
+        if (!Arr::get($post->getAttributes(), "content")) {
             return;
         }
         if (!isset($post->content) || !is_string($post->content)) {
             return;
         }
+
         [$tags, $post->content] = TagPicker::TagPicker($post->content);
         $sss = print_r($post, true);
         $oldPost = $this->posts->query()
@@ -58,6 +59,9 @@ class PostSaving
             ->first();
         $oldTags = [];
         if ($oldPost) {
+            if ($oldPost->content_with_payitem) {
+                $oldPost->content = $oldPost->content_with_payitem;
+            }
             [$oldTags, $_] = TagPicker::TagPicker($oldPost->content);
         }
         $laterPostId = [];
@@ -87,6 +91,24 @@ class PostSaving
             }
             $appearedId[$id] = true;
         }
+        $post->content_with_payitem = $post->content;
+        [$tags, $_] = TagPicker::TagPicker($post->content);
+        $earlist = -1;
+        for ($i = count($tags) - 1; $i >= 0; $i--) {
+            [$st, $_] = $tags[$i]['start_tag'];
+            [$_, $ed] = $tags[$i]['end_tag'];
+            if ($st < $earlist || $earlist == -1) {
+                $earlist = $st;
+            } else
+                continue;
+            $post->content = substr_replace(
+                $post->content,
+                "[PAYMENT]",
+                $st,
+                $ed - $st + 1
+            );
+        }
+
         $rmIdList = [];
         foreach ($oldTags as $tag) {
             if (
