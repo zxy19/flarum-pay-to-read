@@ -6,6 +6,7 @@ use Flarum\Post\Event\Saving;
 use Flarum\Post\Post;
 use Flarum\Post\PostRepository;
 use Flarum\Settings\SettingsRepositoryInterface;
+use Illuminate\Support\Arr;
 use Xypp\PayToRead\PayItem;
 use Xypp\PayToRead\PayItemRepository;
 use Xypp\PayToRead\Utils\TagPicker as TagPicker;
@@ -44,7 +45,7 @@ class PostSaving
         if (!$post instanceof Post) {
             return;
         }
-        if (!isset($post->attributes['content']) || !$post->attributes['content']) {
+        if (!Arr::get($post->getAttributes(),"content")) {
             return;
         }
         if (!isset($post->content) || !is_string($post->content)) {

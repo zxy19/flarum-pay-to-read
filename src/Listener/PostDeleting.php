@@ -6,6 +6,7 @@ use Flarum\Post\Event\Deleting;
 use Flarum\Post\Post;
 use Flarum\Post\PostRepository;
 use Flarum\Settings\SettingsRepositoryInterface;
+use Illuminate\Support\Arr;
 use Xypp\PayToRead\PayItem;
 use Xypp\PayToRead\PayItemRepository;
 use Xypp\PayToRead\Utils\TagPicker as TagPicker;
@@ -43,7 +44,7 @@ class PostDeleting
         if (!$oldPost instanceof Post) {
             return;
         }
-        if (!isset($oldPost->attributes['content']) || !$oldPost->attributes['content']) {
+        if (!Arr::get($oldPost->getAttributes(),"content")) {
             return;
         }
         if (!isset($oldPost->content) || !is_string($oldPost->content)) {
