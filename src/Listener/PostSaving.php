@@ -45,7 +45,7 @@ class PostSaving
         if (!$post instanceof Post) {
             return;
         }
-        if (!Arr::get($post->getAttributes(), "content")) {
+        if (!Arr::get($event->data, "attributes.content")) {
             return;
         }
         if (!isset($post->content) || !is_string($post->content)) {
