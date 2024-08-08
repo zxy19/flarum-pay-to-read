@@ -53,7 +53,6 @@ class PostSaving
         }
 
         [$tags, $post->content] = TagPicker::TagPicker($post->content);
-        $sss = print_r($post, true);
         $oldPost = $this->posts->query()
             ->where('id', '=', $post->id)
             ->first();
