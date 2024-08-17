@@ -10,8 +10,8 @@ return [
         $db = $schema->getConnection();
         $db->table('posts')->whereNotNull("content_with_payitem")
             ->where("content_with_payitem", "!=", "")
-            ->update(['content' => $db->raw('content_with_payitem')]);
-            
+            ->update(['content' => $db->raw("'!old!'+`content_with_payitem`")]);
+
         $schema->table('posts', function (Blueprint $table) {
             $table->dropColumn('content_with_payitem');
         });

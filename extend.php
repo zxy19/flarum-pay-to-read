@@ -50,5 +50,6 @@ return [
     (new Extend\Routes('api'))
         ->post('/pay-to-read/payment/pay', 'ptr.payment.create', Api\Controller\CreatePaymentController::class)
         ->get('/pay-to-read/payment/', 'ptr.payment.get', Api\Controller\QueryPaymentController::class),
-    (new Extend\Notification())->beforeSending(BeforeSendingNotifaction::class)
+    (new Extend\Notification())->beforeSending(BeforeSendingNotifaction::class),
+    (new Extend\Console())->command(Console\MigrateData::class)
 ];
