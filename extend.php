@@ -17,11 +17,10 @@ use Flarum\Post\Event\Saving as EventPostSaving;
 use Flarum\Post\Event\Deleting as EventPostDeleting;
 use Flarum\Post\Post;
 use Flarum\User\User;
-use s9e\TextFormatter\Configurator;
 use Xypp\PayToRead\Listener\BeforeSendingNotifaction;
-use Xypp\PayToRead\Serializer\PostRender;
-use Xypp\PayToRead\Serializer\HasPayUserSerializer;
-use Flarum\Api\Serializer\BasicPostSerializer;
+use Xypp\PayToRead\Render\Configurator;
+use Xypp\PayToRead\Render\Rendering;
+
 
 return [
     (new Extend\Frontend('forum'))
@@ -46,20 +45,10 @@ return [
         ->hasMany("payItem", PayItem::class, "post_id", "id")
         ->hasMany("payment", Payment::class, "user_id", "id"),
     (new Extend\Formatter)
-        ->configure(function (Configurator $config) {
-            $config->BBCodes->addCustom(
-                '[pay amount={UINT} id={UINT}]{TEXT}[/pay]',
-                '<div class="pay-to-read" data-amount="{@amount}" data-id="{@id}">
-                <xsl:apply-templates />
-                <pay-to-read /></div>'
-            );
-        }),
+        ->render(Rendering::class)
+        ->configure(Configurator::class),
     (new Extend\Routes('api'))
         ->post('/pay-to-read/payment/pay', 'ptr.payment.create', Api\Controller\CreatePaymentController::class)
         ->get('/pay-to-read/payment/', 'ptr.payment.get', Api\Controller\QueryPaymentController::class),
-    (new Extend\ApiSerializer(BasicPostSerializer::class))
-        ->attributes(PostRender::class),
-    (new Extend\Notification())->beforeSending(BeforeSendingNotifaction::class),
-    (new Extend\Settings())
-        ->default('xypp.ptr.max-stack', 3),
+    (new Extend\Notification())->beforeSending(BeforeSendingNotifaction::class)
 ];

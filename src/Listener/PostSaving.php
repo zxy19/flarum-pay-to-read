@@ -90,24 +90,6 @@ class PostSaving
             }
             $appearedId[$id] = true;
         }
-        $post->content_with_payitem = $post->content;
-        [$tags, $_] = TagPicker::TagPicker($post->content);
-        $earlist = -1;
-        for ($i = count($tags) - 1; $i >= 0; $i--) {
-            [$st, $_] = $tags[$i]['start_tag'];
-            [$_, $ed] = $tags[$i]['end_tag'];
-            if ($st < $earlist || $earlist == -1) {
-                $earlist = $st;
-            } else
-                continue;
-            $post->content = substr_replace(
-                $post->content,
-                "[PAYMENT]",
-                $st,
-                $ed - $st + 1
-            );
-        }
-
         $rmIdList = [];
         foreach ($oldTags as $tag) {
             if (

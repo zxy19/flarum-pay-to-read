@@ -1,12 +1,9 @@
 xypp-pay-to-read:
   admin:
-    settings:
-      max-stack:
-        label: 最大嵌套层数
-        desc: 超过最大层数的将不做付费块渲染（直接显示）
     permission:
       bypass: 绕过付费。
   forum:
+    preview: 付费内容预览
     nopaidTip: 无人付费
     haspaidTip: "{0}人付费"
     paymentTip: 本贴的付费阅读内容
