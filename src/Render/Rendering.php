@@ -72,7 +72,7 @@ class Rendering
             $pay = $pays->item($i);
             $id = $pay->getAttribute("id");
             $amount = $pay->getAttribute("amount");
-            $count = $paidCount->find($id);
+            $count = $paidCount->where("item_id", $id)->first();
             $payItem = $inPost->find($id);
             if (!$payItem) {
                 $newElement = $document->createElement("PTRNOTFOUND");

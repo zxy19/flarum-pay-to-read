@@ -63,6 +63,7 @@ export default class PayModal extends Modal {
     }
     pay(event) {
         this.loading = true;
+        m.redraw();
         app.request({
             url: app.forum.attribute('apiUrl') + '/pay-to-read/payment/pay',
             body: {
