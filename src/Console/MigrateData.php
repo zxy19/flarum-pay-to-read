@@ -24,7 +24,7 @@ class MigrateData extends Command
 
         $haveNotMigrate = false;
 
-        $this->withProgressBar(Post::where("type", "comment")->getIterator(), function (CommentPost $post) use (&$haveNotMigrate) {
+        $this->withProgressBar(Post::where("type", "comment")->get()->getIterator(), function (CommentPost $post) use (&$haveNotMigrate) {
             $content = $post->getAttribute("content");
             if ($post->getAttribute("content_with_payitem")) {
                 $haveNotMigrate = true;
